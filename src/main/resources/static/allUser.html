@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://unpkg.com/vue"></script>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js">
+<meta charset="UTF-8">
+<title>用户列表</title>
+                                                                                                       
+<script type="text/javascript">  
+    function del(id){     
+        $.get("user/delUser?id=" + id,function(data){  
+            if("success" == data.result){  
+                alert("删除成功");  
+                window.location.reload();      
+            }else{  
+                alert("删除失败");  
+            }  
+        });  
+    }  
+</script>
+</head>
+<body>
+	<h6>
+		<a href="addUser.html">添加用户</a>
+	</h6>
+	<table border="1">
+		<tbody>
+			<tr>
+				<th>姓名</th>
+				<th>密码</th>
+				<th>部门</th>
+				<th>状态</th>
+				<th>工号</th>
+				<th>邮箱</th>
+				<th>薪资A</th>
+				<th>薪资B</th>
+				<th>薪资C</th>
+				<th>薪资D</th>
+				<th>薪资E</th>
+				<th>操作</th>
+			</tr>
+
+			<tr>
+				<td>${user.name}</td>
+				<td>${user.pwd }</td>
+				<td>${user.department_id }</td>
+				<td>${user.stauts }</td>
+				<td>${user.job_id }</td>
+				<td>${user.email }</td>
+				<td>${user.salarya }</td>
+				<td>${user.salaryb }</td>
+				<td>${user.salaryc }</td>
+				<td>${user.salaryd }</td>
+				<td>${user.salarye }</td>
+					
+				<td><a href="user/getUser?id=${user.id}">编辑</a> 
+				<a href="javascript:del('${user.id }')">删除</a></td>                                 
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

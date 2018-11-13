@@ -1,0 +1,20 @@
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<base href="<%=basePath%>">  
+<title>添加部门</title>
+
+</head>
+<body>
+<h1>添加部门</h1>  
+    <form action="/department/addDepartment.action">  
+        部门名称：<input type="text" name="name"><br/>
+        所属上级部门：<input type="text" name="father_id"><br/>       
+        状态：<input type="text" name="status"><br/>  
+        部门描述：<input type="text" name="remark"><br/> 
+               
+        <input type="submit" value="添加">  
+    </form>  
+</body>
+</html>

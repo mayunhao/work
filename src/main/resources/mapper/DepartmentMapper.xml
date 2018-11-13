@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bocloud.work.mapper.DepartmentMapper">
+
+
+	 <insert id="save" parameterType="Department">  
+        insert into department(name,father_id,status,remark) 
+        values(#{name},#{father_id},#{status},#{remark})
+    </insert>  
+      
+    <update id="update" parameterType="Department">    
+        update department set name=#{name},father_id=#{father_id},status=#{status},remark=#{remark} where id=#{id}    
+    </update>   
+      
+    <delete id="delete" parameterType="int">    
+        delete from department where id=#{id}    
+    </delete>    
+        
+     <!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路径 -->      
+    <select id="findById" parameterType="int" resultType="User">    
+        select name,father_id,status,remark from department where id=#{id}    
+    </select>    
+     <select id="findAllList" resultType="Department">    
+        select name,father_id,status,remark from department    
+    </select>   
+    
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.bocloud.work.entity.Department">
+	<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="father_id" property="fatherId" />
+		<result column="status" property="status" />
+		<result column="remark" property="remark" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="gmt_modify" property="gmtModify" />
+		<result column="creater_id" property="createrId" />
+		<result column="mender_id" property="menderId" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+	id,
+        name, father_id AS fatherId, status, remark, gmt_create AS gmtCreate, gmt_modify AS gmtModify, creater_id AS createrId, mender_id AS menderId
+    </sql>
+
+</mapper>

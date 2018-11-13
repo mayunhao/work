@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bocloud.work.mapper.ProjectMapper">
+
+	 <insert id="save" parameterType="Project">  
+        insert into project(name,type,leader) 
+        values(#{name},#{type},#{leader})
+    </insert>  
+      
+    <update id="update" parameterType="Project">    
+        update project set name=#{name},type=#{type},leader=#{leader} where id=#{id}    
+    </update>   
+      
+    <delete id="delete" parameterType="int">    
+        delete from project where id=#{id}    
+    </delete>    
+        
+     <!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路径 -->      
+    <select id="findById" parameterType="int" resultType="Project">    
+        select id,name,type,leader from project where id=#{id}    
+    </select>    
+     <select id="findAllList" resultType="Project">    
+        select id,name,type,leader from project     
+    </select>   
+  	
+	
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.bocloud.work.entity.Project">
+	<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="type" property="type" />
+		<result column="leader" property="leader" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+	id,
+        name,type,leader 
+    </sql>
+
+</mapper>
